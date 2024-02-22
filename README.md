@@ -1,4 +1,4 @@
-# Título do Projeto: Rinha de Backend - Spring Boot e PostgreSQL
+# Rinha de Backend - Spring Boot e PostgreSQL
 ## Descrição
 Este projeto é uma aplicação desenvolvida para a Rinha de Backend, utilizando Spring Boot e PostgreSQL, destinada a simular um sistema bancário. A API REST criada oferece funcionalidades para realizar transações bancárias, como depósitos e saques, além de permitir a consulta de extratos e a busca de informações detalhadas dos clientes no banco de dados. O sistema foi otimizado para suportar alta carga de acessos, visando demonstrar robustez e eficiência em um ambiente de competição que desafia os limites de processamento e gestão de dados sob demanda.
 
@@ -43,14 +43,14 @@ O uso do Docker simplifica a configuração do ambiente, garantindo que a aplica
 2. Arquivo Docker Compose: Navegue até o diretório raiz do projeto, onde o arquivo docker-compose.yml está localizado. Este arquivo contém a configuração necessária para executar tanto o aplicativo Spring Boot quanto o serviço PostgreSQL em containers Docker.
 
 3. Iniciar Serviços: Execute o seguinte comando no terminal:
-`docker-compose up`
+```docker-compose up```
 
 Este comando construirá as imagens Docker necessárias (se ainda não estiverem construídas) e iniciará os containers definidos no docker-compose.yml. A primeira execução pode levar algum tempo, pois precisa baixar as imagens base e construir a imagem da aplicação.
 
 4. Verificação: Após a conclusão do comando, a aplicação estará acessível no endereço http://localhost:8080 (ou na porta configurada no docker-compose.yml).
 
 5. Encerramento: Para interromper e remover os containers criados pelo Docker Compose, utilize o comando:
-`docker-compose down`
+```docker-compose down```
 
 ### Execução Localmente
 Para executar a aplicação diretamente na sua máquina, sem o uso de Docker, siga estes passos. Esta abordagem é útil para desenvolvimento e testes rápidos.
@@ -60,7 +60,7 @@ Para executar a aplicação diretamente na sua máquina, sem o uso de Docker, si
 2. Variáveis de Ambiente: Configure as variáveis de ambiente ou ajuste o arquivo application.properties com as credenciais do seu banco de dados local.
 
 3. Execução da Aplicação: Navegue até o diretório raiz do projeto e execute o seguinte comando para iniciar a aplicação Spring Boot:
-`./mvnw spring-boot:run`
+```./mvnw spring-boot:run```
 Este comando irá compilar o código-fonte (se necessário) e iniciar o servidor da aplicação na porta padrão 8080. A aplicação estará acessível no endereço http://localhost:8080.
 
 ### Acesso e Teste
@@ -75,17 +75,19 @@ Endpoint: /clientes
 Método: POST
 Descrição: Cria uma nova conta bancária para um cliente.
 Corpo da Requisição:
-`{
+```
+{
     "limite": 1000,
     "saldo": 0 
-}`
+}
+```
 Resposta de Sucesso:
-`
+```
 {
     "limite" : 100000,
     "saldo" : -9098
 }
-`
+```
 2. Depósito
 Endpoint: /api/contas/{id}/deposito
 Método: POST
@@ -94,9 +96,11 @@ Parâmetros: id - ID da conta
 Corpo da Requisição:
 json
 Copy code
+```
 {
   "valor": 500.00
 }
+```
 Resposta de Sucesso:
 json
 Copy code
