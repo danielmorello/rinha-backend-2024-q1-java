@@ -94,46 +94,43 @@ Método: POST
 Descrição: Realiza um depósito em uma conta específica.
 Parâmetros: id - ID da conta
 Corpo da Requisição:
-json
-Copy code
 ```
 {
   "valor": 500.00
 }
 ```
 Resposta de Sucesso:
-json
-Copy code
+```
 {
   "id": 1,
   "novoSaldo": 1500.00
 }
+```
 3. Saque
 Endpoint: /api/contas/{id}/saque
 Método: POST
 Descrição: Realiza um saque de uma conta específica.
 Parâmetros: id - ID da conta
 Corpo da Requisição:
-json
-Copy code
+```
 {
   "valor": 200.00
 }
+```
 Resposta de Sucesso:
-json
-Copy code
+```
 {
   "id": 1,
   "novoSaldo": 1300.00
 }
+```
 4. Consulta de Extrato
 Endpoint: /api/contas/{id}/extrato
 Método: GET
 Descrição: Obtém o extrato de transações de uma conta específica.
 Parâmetros: id - ID da conta
 Resposta de Sucesso:
-json
-Copy code
+```
 [
   {
     "tipo": "DEPOSITO",
@@ -146,14 +143,14 @@ Copy code
     "data": "2024-02-21T15:00:00"
   }
 ]
+```
 5. Busca de Informações do Cliente
 Endpoint: /api/clientes/{cpf}
 Método: GET
 Descrição: Busca informações detalhadas do cliente pelo CPF.
 Parâmetros: cpf - CPF do cliente
 Resposta de Sucesso:
-json
-Copy code
+```
 {
   "nome": "Nome do Cliente",
   "cpf": "CPF do Cliente",
@@ -164,6 +161,7 @@ Copy code
     }
   ]
 }
+```
 Dicas de Uso
 Utilize ferramentas como Postman ou cURL para testar os endpoints da API.
 Certifique-se de substituir os valores dos parâmetros e do corpo da requisição conforme necessário.
