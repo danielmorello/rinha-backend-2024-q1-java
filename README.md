@@ -43,14 +43,18 @@ O uso do Docker simplifica a configuração do ambiente, garantindo que a aplica
 2. Arquivo Docker Compose: Navegue até o diretório raiz do projeto, onde o arquivo docker-compose.yml está localizado. Este arquivo contém a configuração necessária para executar tanto o aplicativo Spring Boot quanto o serviço PostgreSQL em containers Docker.
 
 3. Iniciar Serviços: Execute o seguinte comando no terminal:
-```docker-compose up```
+```bash
+docker-compose up
+```
 
 Este comando construirá as imagens Docker necessárias (se ainda não estiverem construídas) e iniciará os containers definidos no docker-compose.yml. A primeira execução pode levar algum tempo, pois precisa baixar as imagens base e construir a imagem da aplicação.
 
 4. Verificação: Após a conclusão do comando, a aplicação estará acessível no endereço http://localhost:8080 (ou na porta configurada no docker-compose.yml).
 
 5. Encerramento: Para interromper e remover os containers criados pelo Docker Compose, utilize o comando:
-```docker-compose down```
+```bash
+docker-compose down
+```
 
 ### Execução Localmente
 Para executar a aplicação diretamente na sua máquina, sem o uso de Docker, siga estes passos. Esta abordagem é útil para desenvolvimento e testes rápidos.
@@ -75,14 +79,14 @@ Endpoint: /clientes
 Método: POST
 Descrição: Cria uma nova conta bancária para um cliente.
 Corpo da Requisição:
-```
+```json
 {
     "limite": 1000,
     "saldo": 0 
 }
 ```
 Resposta de Sucesso:
-```
+```json
 {
     "limite" : 100000,
     "saldo" : -9098
@@ -94,13 +98,13 @@ Método: POST
 Descrição: Realiza um depósito em uma conta específica.
 Parâmetros: id - ID da conta
 Corpo da Requisição:
-```
+```json
 {
   "valor": 500.00
 }
 ```
 Resposta de Sucesso:
-```
+```json
 {
   "id": 1,
   "novoSaldo": 1500.00
@@ -112,13 +116,13 @@ Método: POST
 Descrição: Realiza um saque de uma conta específica.
 Parâmetros: id - ID da conta
 Corpo da Requisição:
-```
+```json
 {
   "valor": 200.00
 }
 ```
 Resposta de Sucesso:
-```
+```json
 {
   "id": 1,
   "novoSaldo": 1300.00
@@ -130,7 +134,7 @@ Método: GET
 Descrição: Obtém o extrato de transações de uma conta específica.
 Parâmetros: id - ID da conta
 Resposta de Sucesso:
-```
+```json
 [
   {
     "tipo": "DEPOSITO",
@@ -150,7 +154,7 @@ Método: GET
 Descrição: Busca informações detalhadas do cliente pelo CPF.
 Parâmetros: cpf - CPF do cliente
 Resposta de Sucesso:
-```
+```json
 {
   "nome": "Nome do Cliente",
   "cpf": "CPF do Cliente",
