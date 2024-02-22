@@ -1,10 +1,15 @@
 package br.com.dsm.RinhaBackend.domain.transaction.model;
 
+import java.time.LocalDateTime;
+
+import br.com.dsm.RinhaBackend.domain.user.model.User;
 import jakarta.annotation.Nonnull;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,12 +25,16 @@ import lombok.Setter;
 @Entity
 @Table(name = "transaction", schema = "public")
 public class Transaction {
-  // TODO: Refazer os tipos e os nomes das funções para adaptar para as transações
+  // TODO: Lembrar da limitação do tamanho da descrição
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Nonnull
   private Integer id;
 
-  private Integer limite;
-  private Integer saldo;
+  private Integer valor;
+  private String tipo;
+  private String descricao;
+  @ManyToOne(fetch = FetchType.LAZY)
+  private User cliente;
+  private LocalDateTime realizada_em;
 }

@@ -1,7 +1,7 @@
 package br.com.dsm.RinhaBackend.application.rest.controller;
 
-import br.com.dsm.RinhaBackend.domain.user.dto.UserDto;
-import br.com.dsm.RinhaBackend.domain.user.ports.inbound.CreateUserUseCase;
+import br.com.dsm.RinhaBackend.domain.transaction.dto.TransactionDto;
+import br.com.dsm.RinhaBackend.domain.transaction.ports.inbound.CreateTransactionUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,13 +11,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/transacao")
 public class TransactionController {
-  // TODO: adaptar as classes para as trasnsações
-
   @Autowired
-  private CreateUserUseCase createUserUseCase;
+  private CreateTransactionUseCase createTransactionUseCase;
 
   @PostMapping
-  public void createUser(@RequestBody UserDto userDto) {
-    createUserUseCase.createUser(userDto);
+  public void createTransaction(@RequestBody TransactionDto transactionDto) {
+    createTransactionUseCase.createTransaction(transactionDto);
   }
 }

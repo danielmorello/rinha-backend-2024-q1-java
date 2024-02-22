@@ -1,8 +1,8 @@
 package br.com.dsm.RinhaBackend.database;
 
+import br.com.dsm.RinhaBackend.domain.transaction.model.Transaction;
 import br.com.dsm.RinhaBackend.domain.transaction.ports.outbound.CreateTransactionPort;
-import br.com.dsm.RinhaBackend.domain.user.model.User;
-import br.com.dsm.RinhaBackend.domain.user.repository.UserRepository;
+import br.com.dsm.RinhaBackend.domain.transaction.repository.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -10,10 +10,10 @@ import org.springframework.stereotype.Component;
 public class CreateTransactionAdapter implements CreateTransactionPort {
   // TODO: Adaptar as classes para a transação
   @Autowired
-  UserRepository userRepository;
+  TransactionRepository transactionRepository;
 
   @Override
-  public void createUser(User user) {
-    userRepository.save(user);
+  public void createTransaction(Transaction transaction) {
+    transactionRepository.save(transaction);
   }
 }

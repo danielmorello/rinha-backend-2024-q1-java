@@ -1,26 +1,27 @@
 package br.com.dsm.RinhaBackend.domain.transaction.mapper;
 
-import br.com.dsm.RinhaBackend.domain.user.dto.UserDto;
-import br.com.dsm.RinhaBackend.domain.user.model.User;
+import br.com.dsm.RinhaBackend.domain.transaction.dto.TransactionDto;
+import br.com.dsm.RinhaBackend.domain.transaction.model.Transaction;
 import org.springframework.stereotype.Component;
 
 @Component
 public class TransactionMapper {
 
-  // TODO: Refazer os tipos e os nomes das funções para adaptar para as transações
-  public User toUser(UserDto userDto) {
-    User user = new User();
-    user.setLimite(userDto.getLimite());
-    user.setSaldo(userDto.getSaldo());
+  public Transaction toTransaction(TransactionDto transactionDto) {
+    Transaction transaction = new Transaction();
+    transaction.setValor(transactionDto.getValor());
+    transaction.setTipo(transactionDto.getTipo());
+    transaction.setDescricao(transactionDto.getDescricao());
 
-    return user;
+    return transaction;
   }
 
-  public UserDto toUserDto(User user) {
-    UserDto userDto = new UserDto();
-    userDto.setLimite(user.getLimite());
-    userDto.setSaldo(user.getSaldo());
+  public TransactionDto toTransactionDto(Transaction transaction) {
+    TransactionDto transactionDto = new TransactionDto();
+    transactionDto.setValor(transaction.getValor());
+    transactionDto.setTipo(transaction.getTipo());
+    transactionDto.setDescricao(transaction.getDescricao());
 
-    return userDto;
+    return transactionDto;
   }
 }
