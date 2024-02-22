@@ -1,5 +1,6 @@
 package br.com.dsm.RinhaBackend.domain.user.model;
 
+import jakarta.annotation.Nonnull;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,6 +23,7 @@ public class User {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Nonnull
   private Integer id;
 
   private Integer limite;
