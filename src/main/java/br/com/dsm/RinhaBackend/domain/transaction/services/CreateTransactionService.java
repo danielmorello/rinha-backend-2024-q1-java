@@ -5,6 +5,7 @@ import br.com.dsm.RinhaBackend.domain.transaction.mapper.TransactionMapper;
 import br.com.dsm.RinhaBackend.domain.transaction.model.Transaction;
 import br.com.dsm.RinhaBackend.domain.transaction.ports.inbound.CreateTransactionUseCase;
 import br.com.dsm.RinhaBackend.domain.transaction.ports.outbound.CreateTransactionPort;
+import br.com.dsm.RinhaBackend.domain.user.exception.UserNotFoundException;
 import br.com.dsm.RinhaBackend.domain.user.model.User;
 import br.com.dsm.RinhaBackend.domain.user.ports.outbound.FindUserPort;
 import java.time.LocalDateTime;
@@ -30,7 +31,9 @@ public class CreateTransactionService implements CreateTransactionUseCase {
 		// TODO: verificar se as transacoes sao do tipo e somente do tipo 'd' ou 'c'
 		// TODO: verificar a necessidades das exceptions para os tipos de dados na entrada
 		Transaction transaction = transactionMapper.toTransaction(transactionDto);
-		User user = findUserPort.findUser(clientId).orElseThrow();
+		User user = findUserPort
+			.findUser(clientId)
+			.orElseThrow(() -> new UserNotFoundException("Cliente não encontrado com esse Id."));
 		transaction.setCliente(user);
 		transaction.setRealizada_em(LocalDateTime.now());
 		createTransactionPort.createTransaction(transaction);
