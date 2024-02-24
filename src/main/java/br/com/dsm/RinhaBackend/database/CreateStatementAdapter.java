@@ -1,19 +1,20 @@
 package br.com.dsm.RinhaBackend.database;
 
-import br.com.dsm.RinhaBackend.domain.transaction.model.Transaction;
-import br.com.dsm.RinhaBackend.domain.transaction.ports.outbound.CreateTransactionPort;
-import br.com.dsm.RinhaBackend.domain.transaction.repository.TransactionRepository;
+import br.com.dsm.RinhaBackend.domain.statement.model.Statement;
+import br.com.dsm.RinhaBackend.domain.statement.ports.outbound.CreateStatementPort;
+import br.com.dsm.RinhaBackend.domain.statement.repository.StatementRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CreateStatementAdapter implements CreateTransactionPort {
-  // TODO: Adaptar as classes para a transação
-  @Autowired
-  TransactionRepository transactionRepository;
+public class CreateStatementAdapter implements CreateStatementPort {
 
-  @Override
-  public void createTransaction(Transaction transaction) {
-    transactionRepository.save(transaction);
-  }
+	// TODO: Adaptar as classes para a transação
+	@Autowired
+	StatementRepository statementRepository;
+
+	@Override
+	public void createStatement(Statement statement) {
+		statementRepository.save(statement);
+	}
 }

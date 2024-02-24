@@ -1,28 +1,29 @@
 package br.com.dsm.RinhaBackend.domain.statement.mapper;
 
-import br.com.dsm.RinhaBackend.domain.transaction.dto.TransactionDto;
-import br.com.dsm.RinhaBackend.domain.transaction.model.Transaction;
+import br.com.dsm.RinhaBackend.domain.statement.dto.StatementDto;
+import br.com.dsm.RinhaBackend.domain.statement.model.Statement;
 import org.springframework.stereotype.Component;
 
 @Component
 public class StatementMapper {
-  // TODO: verificar a adaptação para a classe de extrato
 
-  public Transaction toTransaction(TransactionDto transactionDto) {
-    Transaction transaction = new Transaction();
-    transaction.setValor(transactionDto.getValor());
-    transaction.setTipo(transactionDto.getTipo());
-    transaction.setDescricao(transactionDto.getDescricao());
+	// TODO: verificar a adaptação para a classe de extrato
 
-    return transaction;
-  }
+	public Statement toStatement(StatementDto statementDto) {
+		Statement statement = new Statement();
+		statement.setValor(statementDto.getValor());
+		statement.setTipo(statementDto.getTipo());
+		statement.setDescricao(statementDto.getDescricao());
 
-  public TransactionDto toTransactionDto(Transaction transaction) {
-    TransactionDto transactionDto = new TransactionDto();
-    transactionDto.setValor(transaction.getValor());
-    transactionDto.setTipo(transaction.getTipo());
-    transactionDto.setDescricao(transaction.getDescricao());
+		return statement;
+	}
 
-    return transactionDto;
-  }
+	public StatementDto toStatementDto(Statement statement) {
+		StatementDto statementDto = new StatementDto();
+		statementDto.setValor(statement.getValor());
+		statementDto.setTipo(statement.getTipo());
+		statementDto.setDescricao(statement.getDescricao());
+
+		return statementDto;
+	}
 }

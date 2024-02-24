@@ -1,26 +1,27 @@
 package br.com.dsm.RinhaBackend.domain.statement.services;
 
-import br.com.dsm.RinhaBackend.domain.transaction.dto.TransactionDto;
-import br.com.dsm.RinhaBackend.domain.transaction.mapper.TransactionMapper;
-import br.com.dsm.RinhaBackend.domain.transaction.model.Transaction;
-import br.com.dsm.RinhaBackend.domain.transaction.ports.inbound.CreateTransactionUseCase;
-import br.com.dsm.RinhaBackend.domain.transaction.ports.outbound.CreateTransactionPort;
+import br.com.dsm.RinhaBackend.domain.statement.dto.StatementDto;
+import br.com.dsm.RinhaBackend.domain.statement.mapper.StatementMapper;
+import br.com.dsm.RinhaBackend.domain.statement.model.Statement;
+import br.com.dsm.RinhaBackend.domain.statement.ports.inbound.CreateStatementUseCase;
+import br.com.dsm.RinhaBackend.domain.statement.ports.outbound.CreateStatementPort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CreateStatementService implements CreateTransactionUseCase {
-  // TODO: verificar a adaptação para a classe de extrato
+public class CreateStatementService implements CreateStatementUseCase {
 
-  @Autowired
-  private TransactionMapper transactionMapper;
+	// TODO: verificar a adaptação para a classe de extrato
 
-  @Autowired
-  private CreateTransactionPort createtransactionPort;
+	@Autowired
+	private StatementMapper statementMapper;
 
-  @Override
-  public void createTransaction(TransactionDto transactionDto) {
-    Transaction transaction = transactionMapper.toTransaction(transactionDto);
-    createtransactionPort.createTransaction(transaction);
-  }
+	@Autowired
+	private CreateStatementPort createstatementPort;
+
+	@Override
+	public void createStatement(StatementDto statementDto) {
+		Statement statement = statementMapper.toStatement(statementDto);
+		createstatementPort.createStatement(statement);
+	}
 }
