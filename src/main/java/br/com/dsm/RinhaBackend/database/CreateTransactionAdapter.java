@@ -8,12 +8,13 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class CreateTransactionAdapter implements CreateTransactionPort {
-  // TODO: Adaptar as classes para a transação
-  @Autowired
-  TransactionRepository transactionRepository;
 
-  @Override
-  public void createTransaction(Transaction transaction) {
-    transactionRepository.save(transaction);
-  }
+	// TODO: Adaptar as classes para a transação
+	@Autowired
+	TransactionRepository transactionRepository;
+
+	@Override
+	public void createTransaction(Transaction transaction) {
+		transactionRepository.save(transaction);
+	}
 }
