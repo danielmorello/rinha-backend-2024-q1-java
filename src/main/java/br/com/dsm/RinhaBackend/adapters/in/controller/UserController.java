@@ -1,4 +1,4 @@
-package br.com.dsm.RinhaBackend.adapters.in.rest.controller;
+package br.com.dsm.RinhaBackend.adapters.in.controller;
 
 import br.com.dsm.RinhaBackend.domain.user.dto.UserDto;
 import br.com.dsm.RinhaBackend.domain.user.ports.inbound.CreateUserUseCase;

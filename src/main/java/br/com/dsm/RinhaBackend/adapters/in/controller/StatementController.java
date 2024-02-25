@@ -1,4 +1,4 @@
-package br.com.dsm.RinhaBackend.adapters.in.rest.controller;
+package br.com.dsm.RinhaBackend.adapters.in.controller;
 
 import br.com.dsm.RinhaBackend.domain.statement.dto.StatementDto;
 import br.com.dsm.RinhaBackend.domain.statement.ports.inbound.CreateStatementUseCase;
