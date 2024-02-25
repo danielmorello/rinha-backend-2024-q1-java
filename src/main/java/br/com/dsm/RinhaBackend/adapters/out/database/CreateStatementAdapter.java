@@ -1,4 +1,4 @@
-package br.com.dsm.RinhaBackend.database;
+package br.com.dsm.RinhaBackend.adapters.out.database;
 
 import br.com.dsm.RinhaBackend.domain.statement.model.Statement;
 import br.com.dsm.RinhaBackend.domain.statement.ports.outbound.CreateStatementPort;

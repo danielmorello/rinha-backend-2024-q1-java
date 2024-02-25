@@ -1,4 +1,4 @@
-package br.com.dsm.RinhaBackend.application.rest.controller;
+package br.com.dsm.RinhaBackend.adapters.in.rest.controller;
 
 import br.com.dsm.RinhaBackend.domain.user.dto.UserDto;
 import br.com.dsm.RinhaBackend.domain.user.ports.inbound.CreateUserUseCase;
@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/clientes")
 public class UserController {
 
-  @Autowired
-  private CreateUserUseCase createUserUseCase;
+	@Autowired
+	private CreateUserUseCase createUserUseCase;
 
-  @PostMapping
-  public void createUser(@RequestBody UserDto userDto) {
-    createUserUseCase.createUser(userDto);
-  }
+	@PostMapping
+	public void createUser(@RequestBody UserDto userDto) {
+		createUserUseCase.createUser(userDto);
+	}
 }

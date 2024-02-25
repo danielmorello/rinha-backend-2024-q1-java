@@ -1,4 +1,4 @@
-package br.com.dsm.RinhaBackend.database;
+package br.com.dsm.RinhaBackend.adapters.out.database;
 
 import br.com.dsm.RinhaBackend.domain.user.model.User;
 import br.com.dsm.RinhaBackend.domain.user.ports.outbound.CreateUserPort;
@@ -9,11 +9,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class CreateUserAdapter implements CreateUserPort {
 
-  @Autowired
-  UserRepository userRepository;
+	@Autowired
+	UserRepository userRepository;
 
-  @Override
-  public void createUser(User user) {
-    userRepository.save(user);
-  }
+	@Override
+	public void createUser(User user) {
+		userRepository.save(user);
+	}
 }

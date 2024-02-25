@@ -1,4 +1,4 @@
-package br.com.dsm.RinhaBackend.application.rest.controller;
+package br.com.dsm.RinhaBackend.adapters.in.rest.controller;
 
 import br.com.dsm.RinhaBackend.domain.transaction.dto.TransactionDto;
 import br.com.dsm.RinhaBackend.domain.transaction.ports.inbound.CreateTransactionUseCase;
