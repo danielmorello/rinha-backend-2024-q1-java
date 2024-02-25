@@ -1,6 +1,7 @@
 package br.com.dsm.RinhaBackend.domain.transaction.services;
 
 import br.com.dsm.RinhaBackend.domain.transaction.dto.TransactionDto;
+import br.com.dsm.RinhaBackend.domain.transaction.exception.TransactionTypeNotFoundException;
 import br.com.dsm.RinhaBackend.domain.transaction.mapper.TransactionMapper;
 import br.com.dsm.RinhaBackend.domain.transaction.model.Transaction;
 import br.com.dsm.RinhaBackend.domain.transaction.ports.inbound.CreateTransactionUseCase;
@@ -8,7 +9,7 @@ import br.com.dsm.RinhaBackend.domain.transaction.ports.outbound.CreateTransacti
 import br.com.dsm.RinhaBackend.domain.user.exception.UserNotFoundException;
 import br.com.dsm.RinhaBackend.domain.user.model.User;
 import br.com.dsm.RinhaBackend.domain.user.ports.outbound.FindUserPort;
-import java.time.LocalDateTime;
+import java.time.Instant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,14 +29,17 @@ public class CreateTransactionService implements CreateTransactionUseCase {
 
 	@Override
 	public void createTransaction(Integer clientId, TransactionDto transactionDto) {
-		// TODO: verificar se as transacoes sao do tipo e somente do tipo 'd' ou 'c'
 		// TODO: verificar a necessidades das exceptions para os tipos de dados na entrada
-		Transaction transaction = transactionMapper.toTransaction(transactionDto);
-		User user = findUserPort
-			.findUser(clientId)
-			.orElseThrow(() -> new UserNotFoundException("Cliente não encontrado com esse Id."));
-		transaction.setCliente(user);
-		transaction.setRealizada_em(LocalDateTime.now());
-		createTransactionPort.createTransaction(transaction);
+		if (transactionDto.getTipo().equals("d") || transactionDto.getTipo().equals("c")) {
+			Transaction transaction = transactionMapper.toTransaction(transactionDto);
+			User user = findUserPort
+				.findUser(clientId)
+				.orElseThrow(() -> new UserNotFoundException("Cliente não encontrado com esse Id."));
+			transaction.setCliente(user);
+			transaction.setRealizada_em(Instant.now());
+			createTransactionPort.createTransaction(transaction);
+		} else {
+			throw new TransactionTypeNotFoundException("Tipo de transação não encontrado");
+		}
 	}
 }
