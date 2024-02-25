@@ -1,4 +1,4 @@
-package br.com.dsm.RinhaBackend.adapters.out.database;
+package br.com.dsm.RinhaBackend.adapters.out.database.user;
 
 import br.com.dsm.RinhaBackend.domain.user.model.User;
 import br.com.dsm.RinhaBackend.domain.user.ports.outbound.CreateUserPort;

@@ -1,4 +1,4 @@
-package br.com.dsm.RinhaBackend.adapters.out.database;
+package br.com.dsm.RinhaBackend.adapters.out.database.transaction;
 
 import br.com.dsm.RinhaBackend.domain.transaction.model.Transaction;
 import br.com.dsm.RinhaBackend.domain.transaction.ports.outbound.CreateTransactionPort;
