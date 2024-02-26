@@ -14,7 +14,7 @@ public class CreateTransactionAdapter implements CreateTransactionPort {
 	TransactionRepository transactionRepository;
 
 	@Override
-	public void createTransaction(Transaction transaction) {
-		transactionRepository.save(transaction);
+	public Transaction createTransaction(Transaction transaction) {
+		return transactionRepository.save(transaction);
 	}
 }

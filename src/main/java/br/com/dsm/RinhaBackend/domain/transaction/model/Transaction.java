@@ -39,4 +39,8 @@ public class Transaction {
 	private User cliente;
 
 	private Instant realizada_em;
+
+	public Boolean validatePositiveNumbers(Integer value) {
+		return true;
+	}
 }

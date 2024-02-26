@@ -6,7 +6,9 @@ import br.com.dsm.RinhaBackend.domain.transaction.mapper.TransactionMapper;
 import br.com.dsm.RinhaBackend.domain.transaction.model.Transaction;
 import br.com.dsm.RinhaBackend.domain.transaction.ports.inbound.CreateTransactionUseCase;
 import br.com.dsm.RinhaBackend.domain.transaction.ports.outbound.CreateTransactionPort;
+import br.com.dsm.RinhaBackend.domain.user.dto.UserDto;
 import br.com.dsm.RinhaBackend.domain.user.exception.UserNotFoundException;
+import br.com.dsm.RinhaBackend.domain.user.mapper.UserMapper;
 import br.com.dsm.RinhaBackend.domain.user.model.User;
 import br.com.dsm.RinhaBackend.domain.user.ports.outbound.FindUserPort;
 import java.time.Instant;
@@ -22,13 +24,16 @@ public class CreateTransactionService implements CreateTransactionUseCase {
 	private TransactionMapper transactionMapper;
 
 	@Autowired
+	private UserMapper userMapper;
+
+	@Autowired
 	private CreateTransactionPort createTransactionPort;
 
 	@Autowired
 	private FindUserPort findUserPort;
 
 	@Override
-	public void createTransaction(Integer clientId, TransactionDto transactionDto) {
+	public UserDto createTransaction(Integer clientId, TransactionDto transactionDto) {
 		// TODO: verificar a necessidades das exceptions para os tipos de dados na entrada
 		if (transactionDto.getTipo().equals("d") || transactionDto.getTipo().equals("c")) {
 			Transaction transaction = transactionMapper.toTransaction(transactionDto);
@@ -37,7 +42,10 @@ public class CreateTransactionService implements CreateTransactionUseCase {
 				.orElseThrow(() -> new UserNotFoundException("Cliente não encontrado com esse Id."));
 			transaction.setCliente(user);
 			transaction.setRealizada_em(Instant.now());
-			createTransactionPort.createTransaction(transaction);
+			Transaction transactionCreated = createTransactionPort.createTransaction(transaction);
+			user.updateBalance(transactionCreated.getValor(), transactionCreated.getTipo());
+
+			return userMapper.toUserDto(user);
 		} else {
 			throw new TransactionTypeNotFoundException("Tipo de transação não encontrado");
 		}

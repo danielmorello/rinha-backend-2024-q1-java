@@ -4,5 +4,5 @@ import br.com.dsm.RinhaBackend.domain.transaction.model.Transaction;
 
 public interface CreateTransactionPort {
 	// TODO: Refazer os tipos e os nomes das funções para adaptar para as transações
-	void createTransaction(Transaction transaction);
+	Transaction createTransaction(Transaction transaction);
 }
