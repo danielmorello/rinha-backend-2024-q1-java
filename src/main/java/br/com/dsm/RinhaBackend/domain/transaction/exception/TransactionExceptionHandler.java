@@ -10,6 +10,18 @@ public class TransactionExceptionHandler {
 
 	@ExceptionHandler({ TransactionTypeNotFoundException.class })
 	public ResponseEntity<Object> handleUserNotFoundException(TransactionTypeNotFoundException exception) {
-		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exception.getMessage());
+		return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(exception.getMessage());
+	}
+
+	@ExceptionHandler({ TransactionDescriptionLengthException.class })
+	public ResponseEntity<Object> transactionDescriptionLengthException(
+			TransactionDescriptionLengthException exception) {
+		return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(exception.getMessage());
+	}
+
+	@ExceptionHandler({ TransactionValueException.class })
+	public ResponseEntity<Object> transactionValueException(
+			TransactionValueException exception) {
+		return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(exception.getMessage());
 	}
 }
