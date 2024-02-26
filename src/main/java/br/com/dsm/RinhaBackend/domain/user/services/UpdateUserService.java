@@ -8,7 +8,9 @@ import br.com.dsm.RinhaBackend.domain.user.ports.inbound.UpdateUserUseCase;
 import br.com.dsm.RinhaBackend.domain.user.ports.outbound.FindUserPort;
 import br.com.dsm.RinhaBackend.domain.user.ports.outbound.UpdateUserPort;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class UpdateUserService implements UpdateUserUseCase {
 
 	@Autowired
@@ -22,11 +24,12 @@ public class UpdateUserService implements UpdateUserUseCase {
 
 	@Override
 	public UserDto updateUser(Integer clientId, UserDto userDto) {
-		User oldUser = findUserPort
-			.findUser(clientId)
-			.orElseThrow(() -> new UserNotFoundException("Cliente não encontrado com esse Id."));
-		User user = userMapper.toUser(userDto);
-		User userUpdated = updateUserPort.updateUser(oldUser, user);
+		User userToUpdate = findUserPort
+				.findUser(clientId)
+				.orElseThrow(() -> new UserNotFoundException("Cliente não encontrado com esse Id."));
+		userToUpdate.setLimite(userDto.getLimite());
+		userToUpdate.setSaldo(userDto.getSaldo());
+		User userUpdated = updateUserPort.updateUser(userToUpdate);
 
 		return userMapper.toUserDto(userUpdated);
 	}
