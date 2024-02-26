@@ -17,4 +17,9 @@ public class UserExceptionHandler {
 	public ResponseEntity<Object> userAlreadyExistsException(UserAlreadyExistsException exception) {
 		return ResponseEntity.status(HttpStatus.CONFLICT).body(exception.getMessage());
 	}
+
+	@ExceptionHandler({ UserInsufficientBalanceException.class })
+	public ResponseEntity<Object> userInsufficientBalanceException(UserInsufficientBalanceException exception) {
+		return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(exception.getMessage());
+	}
 }
