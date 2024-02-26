@@ -22,15 +22,8 @@ import lombok.Setter;
 @Setter
 @Getter
 @Data
-@Entity
-@Table(name = "statement", schema = "public")
 public class Statement {
   // TODO: verificar a adaptação para a classe de extrato
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Nonnull
-  private Integer id;
-
   private Integer valor;
   private String tipo;
   private String descricao;

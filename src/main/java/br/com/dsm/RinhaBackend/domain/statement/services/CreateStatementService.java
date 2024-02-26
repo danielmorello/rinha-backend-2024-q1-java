@@ -4,7 +4,6 @@ import br.com.dsm.RinhaBackend.domain.statement.dto.StatementDto;
 import br.com.dsm.RinhaBackend.domain.statement.mapper.StatementMapper;
 import br.com.dsm.RinhaBackend.domain.statement.model.Statement;
 import br.com.dsm.RinhaBackend.domain.statement.ports.inbound.CreateStatementUseCase;
-import br.com.dsm.RinhaBackend.domain.statement.ports.outbound.CreateStatementPort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,12 +15,8 @@ public class CreateStatementService implements CreateStatementUseCase {
 	@Autowired
 	private StatementMapper statementMapper;
 
-	@Autowired
-	private CreateStatementPort createstatementPort;
-
 	@Override
 	public void createStatement(StatementDto statementDto) {
 		Statement statement = statementMapper.toStatement(statementDto);
-		createstatementPort.createStatement(statement);
 	}
 }
