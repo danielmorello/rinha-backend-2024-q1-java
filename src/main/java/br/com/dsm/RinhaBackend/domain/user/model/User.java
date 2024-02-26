@@ -1,6 +1,7 @@
 package br.com.dsm.RinhaBackend.domain.user.model;
 
 import br.com.dsm.RinhaBackend.domain.transaction.model.Transaction;
+import br.com.dsm.RinhaBackend.domain.user.exception.UserInsufficientBalanceException;
 import jakarta.annotation.Nonnull;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -41,7 +42,11 @@ public class User {
 		if (transactionType.equals("c")) {
 			this.saldo = this.saldo + transactionValue;
 		} else if (transactionType.equals("d")) {
-			this.saldo = this.saldo - transactionValue;
+			if (this.saldo - transactionValue >= (this.limite * (-1))) {
+				this.saldo = this.saldo - transactionValue;
+			} else {
+				throw new UserInsufficientBalanceException("Cliente tem limite insuficiente.");
+			}
 		}
 
 		return this.saldo;
