@@ -1,5 +1,7 @@
 package br.com.dsm.RinhaBackend.adapters.in.controller.user;
 
+import br.com.dsm.RinhaBackend.domain.transaction.dto.TransactionDto;
+import br.com.dsm.RinhaBackend.domain.transaction.ports.inbound.CreateTransactionUseCase;
 import br.com.dsm.RinhaBackend.domain.user.dto.UserDto;
 import br.com.dsm.RinhaBackend.domain.user.ports.inbound.CreateUserUseCase;
 import br.com.dsm.RinhaBackend.domain.user.ports.inbound.FindUserUseCase;
@@ -27,9 +29,19 @@ public class UserController {
 	@Autowired
 	private UpdateUserUseCase updateUserUseCase;
 
+	@Autowired
+	private CreateTransactionUseCase createTransactionUseCase;
+
 	@PostMapping
 	public void createUser(@RequestBody UserDto userDto) {
 		createUserUseCase.createUser(userDto);
+	}
+
+	@PostMapping("/{clientId}/transacoes")
+	public UserDto createTransaction(@PathVariable("clientId") Integer clientId,
+			@RequestBody TransactionDto transactionDto) {
+
+		return createTransactionUseCase.createTransaction(clientId, transactionDto);
 	}
 
 	@GetMapping("/{clientId}")
