@@ -5,9 +5,7 @@ import br.com.dsm.RinhaBackend.domain.transaction.model.Transaction;
 import br.com.dsm.RinhaBackend.domain.transaction.ports.inbound.CreateTransactionUseCase;
 import br.com.dsm.RinhaBackend.domain.transaction.ports.inbound.FindTransactionsUseCase;
 import br.com.dsm.RinhaBackend.domain.user.dto.UserDto;
-
-import java.util.ArrayList;
-
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,14 +21,16 @@ public class TransactionController {
 
 	@Autowired
 	private CreateTransactionUseCase createTransactionUseCase;
+
 	@Autowired
 	private FindTransactionsUseCase findTransactionsUseCase;
 
 	// +++++++++++++++++++++++++++++++++++++++++CREATE+++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	@PostMapping("/{clientId}")
 	public ResponseEntity<UserDto> createTransaction(
-			@PathVariable("clientId") Integer clientId,
-			@RequestBody TransactionDto transactionDto) {
+		@PathVariable("clientId") Integer clientId,
+		@RequestBody TransactionDto transactionDto
+	) {
 		UserDto transactionDtoCreated = createTransactionUseCase.createTransaction(clientId, transactionDto);
 
 		return ResponseEntity.ok(transactionDtoCreated);
@@ -38,10 +38,9 @@ public class TransactionController {
 
 	// +++++++++++++++++++++++++++++++++++++++++READ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	@GetMapping("/{clientId}")
-	public ResponseEntity<ArrayList<Transaction>> findTransactions(@PathVariable("clientId") Integer clientId) {
-		ArrayList<Transaction> transactions = findTransactionsUseCase.findTransactions(clientId);
+	public ResponseEntity<List<Transaction>> findTransactions(@PathVariable("clientId") Integer clientId) {
+		List<Transaction> transactions = findTransactionsUseCase.findTransactions(clientId);
 
 		return ResponseEntity.ok(transactions);
 	}
-
 }

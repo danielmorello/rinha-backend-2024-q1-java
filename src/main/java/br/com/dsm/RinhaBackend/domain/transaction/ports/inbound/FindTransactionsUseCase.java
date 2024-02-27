@@ -1,12 +1,8 @@
 package br.com.dsm.RinhaBackend.domain.transaction.ports.inbound;
 
-import java.util.ArrayList;
-
-import br.com.dsm.RinhaBackend.domain.transaction.dto.TransactionDto;
 import br.com.dsm.RinhaBackend.domain.transaction.model.Transaction;
+import java.util.List;
 
 public interface FindTransactionsUseCase {
-
-    ArrayList<Transaction> findTransactions(Integer clientId);
-
+	List<Transaction> findTransactions(Integer clientId);
 }

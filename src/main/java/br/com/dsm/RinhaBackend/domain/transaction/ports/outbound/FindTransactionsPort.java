@@ -1,12 +1,8 @@
 package br.com.dsm.RinhaBackend.domain.transaction.ports.outbound;
 
-import java.util.ArrayList;
-
-import br.com.dsm.RinhaBackend.domain.transaction.dto.TransactionDto;
 import br.com.dsm.RinhaBackend.domain.transaction.model.Transaction;
+import java.util.List;
 
 public interface FindTransactionsPort {
-
-    ArrayList<Transaction> findTransactions(Integer clientId);
-
+	List<Transaction> findTransactions(Integer clientId);
 }
