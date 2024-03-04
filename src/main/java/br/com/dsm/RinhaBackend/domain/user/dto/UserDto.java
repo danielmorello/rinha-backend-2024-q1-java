@@ -1,9 +1,5 @@
 package br.com.dsm.RinhaBackend.domain.user.dto;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import br.com.dsm.RinhaBackend.domain.transaction.model.Transaction;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
