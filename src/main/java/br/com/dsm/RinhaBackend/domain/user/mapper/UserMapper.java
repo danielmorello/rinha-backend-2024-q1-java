@@ -2,6 +2,10 @@ package br.com.dsm.RinhaBackend.domain.user.mapper;
 
 import br.com.dsm.RinhaBackend.domain.user.dto.UserDto;
 import br.com.dsm.RinhaBackend.domain.user.model.User;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
 @Component
@@ -21,5 +25,14 @@ public class UserMapper {
     userDto.setSaldo(user.getSaldo());
 
     return userDto;
+  }
+
+  public List<UserDto> toUserDtoList(List<User> userList) {
+    List<UserDto> userDtoList = new ArrayList<>();
+    for (User user : userList) {
+      userDtoList.add(toUserDto(user));
+    }
+
+    return userDtoList;
   }
 }
