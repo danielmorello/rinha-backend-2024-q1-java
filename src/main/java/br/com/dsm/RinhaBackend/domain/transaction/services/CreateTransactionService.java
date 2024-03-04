@@ -13,14 +13,13 @@ import br.com.dsm.RinhaBackend.domain.user.model.User;
 import br.com.dsm.RinhaBackend.domain.user.ports.outbound.FindUserPort;
 import br.com.dsm.RinhaBackend.domain.user.ports.outbound.UpdateUserPort;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CreateTransactionService implements CreateTransactionUseCase {
-
-	// TODO: Refazer os tipos e os nomes das funções para adaptar para as transações
 
 	@Autowired
 	private TransactionMapper transactionMapper;
@@ -39,15 +38,13 @@ public class CreateTransactionService implements CreateTransactionUseCase {
 
 	@Override
 	public UserDto createTransaction(Integer clientId, TransactionDto transactionDto) {
-		// TODO: verificar a necessidades das exceptions para os tipos de dados na
-		// entrada
 		if (transactionDto.getTipo().equals("d") || transactionDto.getTipo().equals("c")) {
 			Transaction transaction = transactionMapper.toTransaction(transactionDto);
 			User user = findUserPort
 					.findUser(clientId)
 					.orElseThrow(() -> new UserNotFoundException("Cliente não encontrado com esse Id."));
 			transaction.setCliente(user);
-			transaction.setRealizada_em(Instant.now());
+			transaction.setRealizada_em(LocalDateTime.now());
 			Transaction transactionCreated = createTransactionPort.createTransaction(transaction);
 			user.updateBalance(transactionCreated.getValor(), transactionCreated.getTipo());
 			updateUserPort.updateUser(user);
