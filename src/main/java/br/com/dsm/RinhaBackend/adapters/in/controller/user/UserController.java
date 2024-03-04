@@ -9,8 +9,6 @@ import br.com.dsm.RinhaBackend.domain.user.ports.inbound.FindUserUseCase;
 import br.com.dsm.RinhaBackend.domain.user.ports.inbound.UpdateUserUseCase;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,22 +34,27 @@ public class UserController {
 	@Autowired
 	private CreateTransactionUseCase createTransactionUseCase;
 
+	// +++++++++++++++++++++++++++++++++++++++++CREATE+++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	@PostMapping
-	public void createUser(@RequestBody UserDto userDto) {
-		createUserUseCase.createUser(userDto);
+	public ResponseEntity<?> createUser(@RequestBody UserDto userDto) {
+		UserDto userDtoSaved = createUserUseCase.createUser(userDto);
+
+		return ResponseEntity.ok().body(userDtoSaved);
 	}
 
 	@PostMapping("/{clientId}/transacoes")
 	public UserDto createTransaction(
-		@PathVariable("clientId") Integer clientId,
-		@RequestBody TransactionDto transactionDto
-	) {
+			@PathVariable("clientId") Integer clientId,
+			@RequestBody TransactionDto transactionDto) {
+
 		return createTransactionUseCase.createTransaction(clientId, transactionDto);
 	}
 
+	// +++++++++++++++++++++++++++++++++++++++++READ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	@GetMapping("/{clientId}")
 	public ResponseEntity<UserDto> findUser(@PathVariable("clientId") Integer clientId) {
 		UserDto userDto = findUserUseCase.findUser(clientId);
+
 		return ResponseEntity.ok(userDto);
 	}
 
@@ -59,17 +62,15 @@ public class UserController {
 	public ResponseEntity<?> findAllUser() {
 		// Corrigir o retorno do tipo user para userdto
 		List<User> userList = findUserUseCase.findAllUser();
-		HttpHeaders headers = new HttpHeaders();
-		headers.add("Custom-Header", "value");
 
-		return new ResponseEntity<>(userList, headers, HttpStatus.OK);
+		return ResponseEntity.ok().body(userList);
 	}
 
+	// +++++++++++++++++++++++++++++++++++++++++UPDATE+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	@PutMapping("/{clientId}")
 	public ResponseEntity<UserDto> updateUser(
-		@PathVariable("clientId") Integer clientId,
-		@RequestBody UserDto userDto
-	) {
+			@PathVariable("clientId") Integer clientId,
+			@RequestBody UserDto userDto) {
 		UserDto userDtoCreated = updateUserUseCase.updateUser(clientId, userDto);
 
 		return ResponseEntity.ok(userDtoCreated);

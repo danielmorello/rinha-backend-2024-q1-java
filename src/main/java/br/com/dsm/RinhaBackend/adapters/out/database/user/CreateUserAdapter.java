@@ -13,7 +13,9 @@ public class CreateUserAdapter implements CreateUserPort {
 	UserRepository userRepository;
 
 	@Override
-	public void createUser(User user) {
-		userRepository.save(user);
+	public User createUser(User user) {
+		User userSaved = userRepository.save(user);
+
+		return userSaved;
 	}
 }

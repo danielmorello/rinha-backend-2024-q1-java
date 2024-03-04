@@ -18,8 +18,10 @@ public class CreateUserService implements CreateUserUseCase {
   private CreateUserPort createUserPort;
 
   @Override
-  public void createUser(UserDto userDto) {
+  public UserDto createUser(UserDto userDto) {
     User user = userMapper.toUser(userDto);
-    createUserPort.createUser(user);
+    User userSaved = createUserPort.createUser(user);
+
+    return userMapper.toUserDto(userSaved);
   }
 }
