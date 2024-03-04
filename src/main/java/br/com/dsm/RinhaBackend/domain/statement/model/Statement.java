@@ -1,26 +1,15 @@
 package br.com.dsm.RinhaBackend.domain.statement.model;
 
-import java.time.LocalDateTime;
+import java.util.List;
 
-import br.com.dsm.RinhaBackend.domain.user.model.User;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.ManyToOne;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Setter
-@Getter
-@Data
+@JsonPropertyOrder({ "saldo", "ultimas_transacoes" })
 public class Statement {
-  private Integer valor;
-  private String tipo;
-  private String descricao;
-  @ManyToOne(fetch = FetchType.LAZY)
-  private User cliente;
-  private LocalDateTime realizada_em;
+  @JsonProperty("saldo")
+  public Balance saldo;
+  @JsonProperty("ultimas_transacoes")
+  public List<LastTransactions> ultimasTransacoes;
+
 }
