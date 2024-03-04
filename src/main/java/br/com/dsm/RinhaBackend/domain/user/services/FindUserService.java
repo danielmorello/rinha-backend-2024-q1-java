@@ -22,8 +22,8 @@ public class FindUserService implements FindUserUseCase {
 	@Override
 	public UserDto findUser(Integer clientId) {
 		User user = findUserPort
-			.findUser(clientId)
-			.orElseThrow(() -> new UserNotFoundException("Cliente não encontrado com esse Id."));
+				.findUser(clientId)
+				.orElseThrow(() -> new UserNotFoundException("Cliente não encontrado com esse Id."));
 
 		return userMapper.toUserDto(user);
 	}

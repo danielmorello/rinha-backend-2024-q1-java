@@ -18,5 +18,6 @@ public class CreateStatementService implements CreateStatementUseCase {
 	@Override
 	public void createStatement(StatementDto statementDto) {
 		Statement statement = statementMapper.toStatement(statementDto);
+		System.out.println(statement);
 	}
 }
