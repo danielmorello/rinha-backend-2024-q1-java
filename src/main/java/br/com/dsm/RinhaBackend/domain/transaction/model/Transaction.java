@@ -9,7 +9,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import java.time.Instant;
+import java.time.LocalDateTime;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -36,9 +39,10 @@ public class Transaction {
 	private String descricao;
 
 	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonBackReference
 	private User cliente;
 
-	private Instant realizada_em;
+	private LocalDateTime realizada_em;
 
 	public Boolean validatePositiveNumbers(Integer value) {
 		return true;

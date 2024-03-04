@@ -12,6 +12,9 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -36,6 +39,7 @@ public class User {
 	private Integer saldo;
 
 	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonManagedReference
 	private List<Transaction> transacoes = new ArrayList<>();
 
 	public Integer updateBalance(Integer transactionValue, String transactionType) {
