@@ -29,9 +29,9 @@ public class FindUserService implements FindUserUseCase {
 	}
 
 	@Override
-	public List<User> findAllUser() {
+	public List<UserDto> findAllUser() {
 		List<User> userList = findUserPort.findAllUser();
 
-		return userList;
+		return userMapper.toUserDtoList(userList);
 	}
 }

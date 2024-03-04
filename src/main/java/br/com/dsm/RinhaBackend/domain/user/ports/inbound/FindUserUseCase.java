@@ -7,5 +7,5 @@ import java.util.List;
 public interface FindUserUseCase {
 	UserDto findUser(Integer clientId);
 
-	List<User> findAllUser();
+	List<UserDto> findAllUser();
 }
