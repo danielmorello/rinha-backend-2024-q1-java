@@ -61,7 +61,7 @@ public class UserController {
 	@GetMapping
 	public ResponseEntity<?> findAllUser() {
 		// Corrigir o retorno do tipo user para userdto
-		List<User> userList = findUserUseCase.findAllUser();
+		List<UserDto> userList = findUserUseCase.findAllUser();
 
 		return ResponseEntity.ok().body(userList);
 	}
