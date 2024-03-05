@@ -1,8 +1,7 @@
 package br.com.dsm.RinhaBackend.domain.statement.ports.inbound;
 
-import br.com.dsm.RinhaBackend.domain.statement.dto.StatementDto;
+import br.com.dsm.RinhaBackend.domain.statement.model.Statement;
 
 public interface CreateStatementUseCase {
-	// TODO: verificar a adaptação para a classe de extrato
-	void createStatement(StatementDto statementDto);
+	Statement createStatement(Integer clietnId);
 }
