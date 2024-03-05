@@ -13,6 +13,7 @@ public class CreateTransactionAdapter implements CreateTransactionPort {
 	@Autowired
 	TransactionRepository transactionRepository;
 
+	@SuppressWarnings("null")
 	@Override
 	public Transaction createTransaction(Transaction transaction) {
 		return transactionRepository.save(transaction);

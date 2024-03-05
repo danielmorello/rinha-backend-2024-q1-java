@@ -14,6 +14,7 @@ public class CreateUserAdapter implements CreateUserPort {
 
 	@Override
 	public User createUser(User user) {
+		@SuppressWarnings("null")
 		User userSaved = userRepository.save(user);
 
 		return userSaved;

@@ -14,6 +14,7 @@ public class FindUserAdapter implements FindUserPort {
 	@Autowired
 	UserRepository userRepository;
 
+	@SuppressWarnings("null")
 	@Override
 	public Optional<User> findUser(Integer clientId) {
 		return userRepository.findById(clientId);

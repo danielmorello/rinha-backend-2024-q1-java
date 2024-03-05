@@ -12,6 +12,7 @@ public class UpdateUserAdapter implements UpdateUserPort {
     @Autowired
     private UserRepository userRepository;
 
+    @SuppressWarnings("null")
     @Override
     public User updateUser(User user) {
         return userRepository.save(user);
