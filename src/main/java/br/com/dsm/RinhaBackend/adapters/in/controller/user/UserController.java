@@ -1,5 +1,7 @@
 package br.com.dsm.RinhaBackend.adapters.in.controller.user;
 
+import br.com.dsm.RinhaBackend.domain.statement.model.Statement;
+import br.com.dsm.RinhaBackend.domain.statement.ports.inbound.CreateStatementUseCase;
 import br.com.dsm.RinhaBackend.domain.transaction.dto.TransactionDto;
 import br.com.dsm.RinhaBackend.domain.transaction.ports.inbound.CreateTransactionUseCase;
 import br.com.dsm.RinhaBackend.domain.user.dto.UserDto;
@@ -33,6 +35,9 @@ public class UserController {
 	@Autowired
 	private CreateTransactionUseCase createTransactionUseCase;
 
+	@Autowired
+	private CreateStatementUseCase createStatementUseCase;
+
 	// +++++++++++++++++++++++++++++++++++++++++CREATE+++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	@PostMapping
 	public ResponseEntity<?> createUser(@RequestBody UserDto userDto) {
@@ -55,6 +60,13 @@ public class UserController {
 		UserDto userDto = findUserUseCase.findUser(clientId);
 
 		return ResponseEntity.ok(userDto);
+	}
+
+	@GetMapping("/{clientId}/extrato")
+	public ResponseEntity<?> findStatement(@PathVariable("clientId") Integer clientId) {
+		Statement statement = createStatementUseCase.createStatement(clientId);
+
+		return ResponseEntity.ok().body(statement);
 	}
 
 	@GetMapping
