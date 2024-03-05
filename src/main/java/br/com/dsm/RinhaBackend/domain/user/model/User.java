@@ -9,6 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OrderBy;
 import jakarta.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +41,7 @@ public class User {
 
 	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
 	@JsonManagedReference
+	@OrderBy("realizada_em DESC")
 	private List<Transaction> transacoes = new ArrayList<>();
 
 	public Integer updateBalance(Integer transactionValue, String transactionType) {
