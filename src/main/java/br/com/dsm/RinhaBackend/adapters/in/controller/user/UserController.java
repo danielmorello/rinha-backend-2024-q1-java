@@ -3,7 +3,6 @@ package br.com.dsm.RinhaBackend.adapters.in.controller.user;
 import br.com.dsm.RinhaBackend.domain.transaction.dto.TransactionDto;
 import br.com.dsm.RinhaBackend.domain.transaction.ports.inbound.CreateTransactionUseCase;
 import br.com.dsm.RinhaBackend.domain.user.dto.UserDto;
-import br.com.dsm.RinhaBackend.domain.user.model.User;
 import br.com.dsm.RinhaBackend.domain.user.ports.inbound.CreateUserUseCase;
 import br.com.dsm.RinhaBackend.domain.user.ports.inbound.FindUserUseCase;
 import br.com.dsm.RinhaBackend.domain.user.ports.inbound.UpdateUserUseCase;
