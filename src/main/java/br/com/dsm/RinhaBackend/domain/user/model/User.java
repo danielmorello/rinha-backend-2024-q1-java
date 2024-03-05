@@ -27,7 +27,7 @@ import lombok.Setter;
 @Getter
 @Data
 @Entity
-@Table(name = "user", schema = "public")
+@Table(name = "tb_user", schema = "public")
 public class User {
 
 	@Id

@@ -25,7 +25,7 @@ import lombok.Setter;
 @Getter
 @Data
 @Entity
-@Table(name = "transaction", schema = "public")
+@Table(name = "tb_transaction", schema = "public")
 public class Transaction {
 
 	// TODO: Lembrar da limitação do tamanho da descrição
