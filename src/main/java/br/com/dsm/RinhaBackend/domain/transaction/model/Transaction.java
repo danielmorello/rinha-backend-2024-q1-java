@@ -9,7 +9,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import java.time.LocalDateTime;
+
+import java.time.Instant;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -44,7 +45,7 @@ public class Transaction {
 	@JsonBackReference
 	private User cliente;
 
-	private LocalDateTime realizada_em;
+	private Instant realizada_em;
 
 	public Boolean validatePositiveNumbers(Integer value) {
 		return true;

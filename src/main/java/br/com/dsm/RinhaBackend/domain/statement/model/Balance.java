@@ -1,6 +1,6 @@
 package br.com.dsm.RinhaBackend.domain.statement.model;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -19,7 +19,7 @@ public class Balance {
     @JsonProperty("total")
     public Integer total;
     @JsonProperty("data_extrato")
-    public LocalDateTime dataExtrato;
+    public Instant dataExtrato;
     @JsonProperty("limite")
     public Integer limite;
 

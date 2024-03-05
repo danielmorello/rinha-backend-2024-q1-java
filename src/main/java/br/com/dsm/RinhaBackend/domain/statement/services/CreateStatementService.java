@@ -7,7 +7,7 @@ import br.com.dsm.RinhaBackend.domain.transaction.ports.inbound.FindTransactions
 import br.com.dsm.RinhaBackend.domain.user.dto.UserDto;
 import br.com.dsm.RinhaBackend.domain.user.ports.inbound.FindUserUseCase;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,7 +25,7 @@ public class CreateStatementService implements CreateStatementUseCase {
 		Statement statement = new Statement();
 		UserDto userDto = findUserUseCase.findUser(clietnId);
 		Balance balance = new Balance();
-		balance.setDataExtrato(LocalDateTime.now());
+		balance.setDataExtrato(Instant.now());
 		balance.setLimite(userDto.getLimite());
 		balance.setTotal(userDto.getSaldo());
 		if (userDto.getTransacoes().size() > 10) {

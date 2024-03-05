@@ -13,7 +13,7 @@ import br.com.dsm.RinhaBackend.domain.user.model.User;
 import br.com.dsm.RinhaBackend.domain.user.ports.outbound.FindUserPort;
 import br.com.dsm.RinhaBackend.domain.user.ports.outbound.UpdateUserPort;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,7 +44,7 @@ public class CreateTransactionService implements CreateTransactionUseCase {
 					.findUser(clientId)
 					.orElseThrow(() -> new UserNotFoundException("Cliente não encontrado com esse Id."));
 			transaction.setCliente(user);
-			transaction.setRealizada_em(LocalDateTime.now());
+			transaction.setRealizada_em(Instant.now());
 			Transaction transactionCreated = createTransactionPort.createTransaction(transaction);
 			user.updateBalance(transactionCreated.getValor(), transactionCreated.getTipo());
 			updateUserPort.updateUser(user);
