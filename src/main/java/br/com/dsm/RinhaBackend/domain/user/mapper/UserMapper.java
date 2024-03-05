@@ -23,6 +23,7 @@ public class UserMapper {
     UserDto userDto = new UserDto();
     userDto.setLimite(user.getLimite());
     userDto.setSaldo(user.getSaldo());
+    userDto.setTransacoes(user.getTransacoes());
 
     return userDto;
   }
