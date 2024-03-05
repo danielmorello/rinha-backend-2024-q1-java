@@ -23,14 +23,16 @@ public class CreateStatementService implements CreateStatementUseCase {
 	@Override
 	public Statement createStatement(Integer clietnId) {
 		Statement statement = new Statement();
-		// Buscar saldo e limite do cliente
 		UserDto userDto = findUserUseCase.findUser(clietnId);
 		Balance balance = new Balance();
 		balance.setDataExtrato(LocalDateTime.now());
 		balance.setLimite(userDto.getLimite());
 		balance.setTotal(userDto.getSaldo());
-		// Buscar as 10 ultimass transacoes do cliente
-		statement.setUltimasTransacoes(userDto.getTransacoes());
+		if (userDto.getTransacoes().size() > 10) {
+			statement.setUltimasTransacoes(userDto.getTransacoes().subList(0, 10));
+		} else {
+			statement.setUltimasTransacoes(userDto.getTransacoes());
+		}
 		statement.setSaldo(balance);
 
 		return statement;
