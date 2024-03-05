@@ -1,19 +1,19 @@
-
 server:
-  port: 3333
+    port: 3333
 spring:
-  jpa:
-    database: POSTGRESQL
-    show-sql: true
-    hibernate:
-      ddl-auto: update
-  datasource:
-    platform: postgres
-    url: jdbc:postgresql://localhost:5432/rinhabackend
-    username: postgres
-    password: postgres
-    driverClassName: org.postgresql.Driver
-    initialization-mode: always
     sql:
-      init:
-        mode: always
+        init:
+            mode: always
+    jpa:
+        defer-datasource-initialization: true
+        database: POSTGRESQL
+        show-sql: false
+        hibernate:
+            ddl-auto: create-drop
+    datasource:
+        platform: postgres
+        url: jdbc:postgresql://localhost:5432/rinhabackend
+        username: postgres
+        password: postgres
+        driverClassName: org.postgresql.Driver
+        initialization-mode: always
