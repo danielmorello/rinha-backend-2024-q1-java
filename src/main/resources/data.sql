@@ -1,5 +1,5 @@
-INSERT INTO 'user' ('id', 'limite', 'saldo') VALUES (1, 1000 * 100, 0);
-INSERT INTO 'user' ('id', 'limite', 'saldo') VALUES (2, 1000 * 100, 0);
-INSERT INTO 'user' ('id', 'limite', 'saldo') VALUES (3, 1000 * 100, 0);
-INSERT INTO 'user' ('id', 'limite', 'saldo') VALUES (4, 1000 * 100, 0);
-INSERT INTO 'user' ('id', 'limite', 'saldo') VALUES (5, 1000 * 100, 0);
+INSERT INTO tb_user (id, limite, saldo) VALUES(1, 100000, 0);
+INSERT INTO tb_user (id, limite, saldo) VALUES(2, 80000, 0);
+INSERT INTO tb_user (id, limite, saldo) VALUES(3, 1000000, 0);
+INSERT INTO tb_user (id, limite, saldo) VALUES(4, 10000000, 0);
+INSERT INTO tb_user (id, limite, saldo) VALUES(5, 500000, 0);
