@@ -13,6 +13,11 @@ services:
             - "3333:3333"
         depends_on:
             - db
+        deploy:
+            resources:
+                limits:
+                    cpus: "0.6"
+                    memory: "200MB"
 
     api02:
         <<: *api
@@ -34,6 +39,11 @@ services:
             - api02
         ports:
             - "9999:9999"
+        deploy:
+            resources:
+                limits:
+                    cpus: "0.17"
+                    memory: "10MB"
 
     db:
         image: postgres:latest
@@ -46,7 +56,14 @@ services:
             - "5432:5432"
         volumes:
             - ./script.sql:/docker-entrypoint-initdb.d/script.sql
+        deploy:
+            resources:
+                limits:
+                    cpus: "0.13"
+                    memory: "140MB"
+
 networks:
     default:
         driver: bridge
         name: rinha-nginx-2024q1
+
