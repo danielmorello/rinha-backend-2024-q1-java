@@ -2,7 +2,7 @@ version: "3.5"
 
 services:
     api01: &api
-        image: rinha
+        image: danielmorello/rinha:latest
         hostname: api01
         environment:
             - DB_HOSTNAME=db
@@ -66,4 +66,3 @@ networks:
     default:
         driver: bridge
         name: rinha-nginx-2024q1
-
